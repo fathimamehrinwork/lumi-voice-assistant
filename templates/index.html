@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>LUMI - AI Voice Assistant</title>
+
+    <!-- IMPORTANT: Flask loads CSS from static folder -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body class="state-ready">
+
+
+    <!-- =========================
+         BACKGROUND EFFECTS
+    ========================== -->
+
+    <div class="background-glow"></div>
+
+    <div class="stars stars-one"></div>
+    <div class="stars stars-two"></div>
+
+
+    <!-- =========================
+         TOP NAVIGATION
+    ========================== -->
+
+    <header class="topbar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                ◉
+            </div>
+
+            <div>
+
+                <h1>LUMI</h1>
+
+                <span>
+                    AI VOICE ASSISTANT
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="online-status">
+
+            <span class="status-dot"></span>
+
+            <span>ONLINE</span>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main-container">
+
+
+        <!-- INTRO -->
+
+        <section class="intro-section">
+
+            <p class="eyebrow">
+                YOUR INTELLIGENT VOICE COMPANION
+            </p>
+
+            <h2>
+                Hello, I'm <span>LUMI</span>
+            </h2>
+
+            <p class="intro-text">
+                Speak naturally. I'm listening.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             LUMI ORB
+        ========================== -->
+
+        <section class="orb-section">
+
+
+            <div class="orb-container">
+
+
+                <!-- Outer energy rings -->
+
+                <div class="orb-ring ring-one"></div>
+
+                <div class="orb-ring ring-two"></div>
+
+                <div class="orb-ring ring-three"></div>
+
+
+                <!-- Floating energy particles -->
+
+                <div class="orb-particle particle-one"></div>
+
+                <div class="orb-particle particle-two"></div>
+
+                <div class="orb-particle particle-three"></div>
+
+                <div class="orb-particle particle-four"></div>
+
+                <div class="orb-particle particle-five"></div>
+
+
+                <!-- Main orb -->
+
+                <div class="orb">
+
+                    <div class="orb-core"></div>
+
+                    <div class="orb-light light-one"></div>
+
+                    <div class="orb-light light-two"></div>
+
+                    <div class="orb-light light-three"></div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- Status -->
+
+            <div class="assistant-status">
+
+                <div
+                    id="status"
+                    class="status-title"
+                >
+                    READY
+                </div>
+
+                <div
+                    id="statusDescription"
+                    class="status-description"
+                >
+                    Press the button and start speaking
+                </div>
+
+            </div>
+
+
+            <!-- Controls -->
+
+            <div class="controls">
+
+                <button
+                    id="talkButton"
+                    class="talk-button"
+                >
+
+                    <span class="button-icon">
+                        🎙
+                    </span>
+
+                    <span id="talkText">
+                        TALK TO LUMI
+                    </span>
+
+                </button>
+
+
+                <button
+                    id="stopButton"
+                    class="stop-button"
+                    disabled
+                >
+
+                    STOP
+
+                </button>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =========================
+             RESPONSE STYLE
+        ========================== -->
+
+        <section class="settings-panel">
+
+            <div class="settings-title">
+                RESPONSE STYLE
+            </div>
+
+
+            <div class="response-options">
+
+
+                <label class="response-option">
+
+                    <input
+                        type="radio"
+                        name="responseLength"
+                        value="short"
+                    >
+
+                    <span class="custom-radio"></span>
+
+                    <span>
+                        SHORT
+                    </span>
+
+                </label>
+
+
+                <label class="response-option">
+
+                    <input
+                        type="radio"
+                        name="responseLength"
+                        value="normal"
+                        checked
+                    >
+
+                    <span class="custom-radio"></span>
+
+                    <span>
+                        NORMAL
+                    </span>
+
+                </label>
+
+
+                <label class="response-option">
+
+                    <input
+                        type="radio"
+                        name="responseLength"
+                        value="detailed"
+                    >
+
+                    <span class="custom-radio"></span>
+
+                    <span>
+                        DETAILED
+                    </span>
+
+                </label>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CONVERSATION
+        ========================== -->
+
+        <section class="conversation-section">
+
+
+            <div class="conversation-card user-card">
+
+                <div class="card-header">
+
+                    <span class="card-label">
+                        YOU
+                    </span>
+
+                    <span class="card-line"></span>
+
+                </div>
+
+
+                <div
+                    id="userText"
+                    class="message-text"
+                >
+                    Waiting for your message...
+                </div>
+
+            </div>
+
+
+            <div class="conversation-card lumi-card">
+
+                <div class="card-header">
+
+                    <span class="card-label">
+                        LUMI
+                    </span>
+
+                    <span class="card-line"></span>
+
+                </div>
+
+
+                <div
+                    id="aiText"
+                    class="message-text"
+                >
+                    Your response will appear here.
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <span>
+            LUMI
+        </span>
+
+        <span class="footer-dot">
+            •
+        </span>
+
+        <span>
+            LOCAL AI POWERED BY OLLAMA
+        </span>
+
+    </footer>
+
+
+    <!-- IMPORTANT: Flask loads JS from static folder -->
+
+    <script
+        src="{{ url_for('static', filename='script.js') }}"
+    ></script>
+
+
+</body>
+
+</html>

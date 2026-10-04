@@ -1,0 +1,1740 @@
+/* =========================================================
+   LUMI - FUTURISTIC AI VOICE ASSISTANT
+   SOFT VOICE-REACTIVE VERSION
+========================================================= */
+
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(0, 120, 255, 0.10),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 50% 80%,
+            rgba(0, 80, 180, 0.08),
+            transparent 40%
+        ),
+
+        #02050a;
+
+    color: #eaf7ff;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    overflow-x: hidden;
+
+    position: relative;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.background-glow {
+
+    position: fixed;
+
+    width: 700px;
+    height: 700px;
+
+    left: 50%;
+    top: 45%;
+
+    transform:
+        translate(-50%, -50%);
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(0, 150, 255, 0.08),
+            transparent 65%
+        );
+
+    pointer-events: none;
+
+    z-index: -2;
+}
+
+
+.stars {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: -3;
+
+    opacity: 0.45;
+}
+
+
+.stars-one {
+
+    background-image:
+
+        radial-gradient(
+            circle,
+            rgba(120, 210, 255, 0.7) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        90px 90px;
+
+    animation:
+        starsMove 25s linear infinite;
+}
+
+
+.stars-two {
+
+    background-image:
+
+        radial-gradient(
+            circle,
+            rgba(0, 140, 255, 0.5) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        140px 140px;
+
+    animation:
+        starsMove 40s linear infinite reverse;
+}
+
+
+@keyframes starsMove {
+
+    from {
+        transform:
+            translateY(0);
+    }
+
+    to {
+        transform:
+            translateY(90px);
+    }
+}
+
+
+/* =========================================================
+   TOP BAR
+========================================================= */
+
+.topbar {
+
+    width: 100%;
+
+    padding:
+        25px 50px;
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    border-bottom:
+        1px solid
+        rgba(0, 170, 255, 0.12);
+
+    background:
+        rgba(2, 7, 13, 0.7);
+
+    backdrop-filter:
+        blur(15px);
+}
+
+
+.brand {
+
+    display: flex;
+
+    align-items:
+        center;
+
+    gap: 14px;
+}
+
+
+.brand-icon {
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    color: #5ddcff;
+
+    border:
+        1px solid
+        rgba(0, 190, 255, 0.5);
+
+    box-shadow:
+        0 0 20px
+        rgba(0, 180, 255, 0.3);
+
+    animation:
+        brandPulse 3s ease-in-out infinite;
+}
+
+
+@keyframes brandPulse {
+
+    0%,
+    100% {
+
+        box-shadow:
+            0 0 15px
+            rgba(0, 180, 255, 0.25);
+    }
+
+    50% {
+
+        box-shadow:
+            0 0 30px
+            rgba(0, 180, 255, 0.6);
+    }
+}
+
+
+.brand h1 {
+
+    font-size: 22px;
+
+    letter-spacing:
+        5px;
+
+    font-weight:
+        600;
+}
+
+
+.brand span {
+
+    display: block;
+
+    margin-top:
+        3px;
+
+    font-size:
+        9px;
+
+    letter-spacing:
+        2px;
+
+    color:
+        #66808f;
+}
+
+
+.online-status {
+
+    display: flex;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        2px;
+
+    color:
+        #80a4b5;
+}
+
+
+.status-dot {
+
+    width: 7px;
+    height: 7px;
+
+    border-radius:
+        50%;
+
+    background:
+        #36e6ff;
+
+    box-shadow:
+        0 0 10px
+        #36e6ff;
+
+    animation:
+        onlinePulse 1.8s ease-in-out infinite;
+}
+
+
+@keyframes onlinePulse {
+
+    0%,
+    100% {
+        opacity:
+            0.5;
+    }
+
+    50% {
+        opacity:
+            1;
+    }
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main-container {
+
+    width:
+        min(1000px, 92%);
+
+    margin:
+        0 auto;
+
+    padding-bottom:
+        60px;
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.intro-section {
+
+    text-align:
+        center;
+
+    padding-top:
+        45px;
+}
+
+
+.eyebrow {
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        4px;
+
+    color:
+        #4f90ad;
+
+    margin-bottom:
+        15px;
+}
+
+
+.intro-section h2 {
+
+    font-size:
+        36px;
+
+    font-weight:
+        300;
+
+    letter-spacing:
+        1px;
+
+    margin-bottom:
+        12px;
+}
+
+
+.intro-section h2 span {
+
+    color:
+        #55d9ff;
+
+    text-shadow:
+        0 0 15px
+        rgba(0, 190, 255, 0.5);
+}
+
+
+.intro-text {
+
+    font-size:
+        14px;
+
+    color:
+        #6d8997;
+}
+
+
+/* =========================================================
+   ORB SECTION
+========================================================= */
+
+.orb-section {
+
+    text-align:
+        center;
+
+    margin-top:
+        10px;
+}
+
+
+.orb-container {
+
+    position:
+        relative;
+
+    width:
+        390px;
+
+    height:
+        390px;
+
+    margin:
+        0 auto;
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+}
+
+
+/* =========================================================
+   MAIN ORB
+========================================================= */
+
+.orb {
+
+    --voice-scale:
+        var(--lumi-scale, 1);
+
+    position:
+        relative;
+
+    width:
+        145px;
+
+    height:
+        145px;
+
+    border-radius:
+        50%;
+
+    background:
+
+        radial-gradient(
+            circle at 35% 30%,
+            #bdf6ff 0%,
+            #40d9ff 12%,
+            #0098e8 35%,
+            #0052a2 62%,
+            #03142b 100%
+        );
+
+    z-index:
+        5;
+
+    transform:
+
+        translate3d(
+            0,
+            var(--lumi-y, 0px),
+            0
+        )
+
+        scale(
+            var(--voice-scale)
+        );
+
+    box-shadow:
+
+        0 0
+        calc(
+            25px +
+            (
+                var(--lumi-glow, 0)
+                * 35px
+            )
+        )
+        rgba(
+            0,
+            190,
+            255,
+            0.75
+        ),
+
+        0 0
+        calc(
+            60px +
+            (
+                var(--lumi-glow, 0)
+                * 60px
+            )
+        )
+        rgba(
+            0,
+            160,
+            255,
+            0.50
+        ),
+
+        0 0
+        calc(
+            120px +
+            (
+                var(--lumi-glow, 0)
+                * 60px
+            )
+        )
+        rgba(
+            0,
+            100,
+            255,
+            0.25
+        );
+
+    transition:
+        none;
+
+    will-change:
+        transform,
+        box-shadow;
+}
+
+
+/* =========================================================
+   ORB INNER BORDER
+========================================================= */
+
+.orb::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        8px;
+
+    border-radius:
+        50%;
+
+    border:
+        1px solid
+        rgba(180, 245, 255, 0.65);
+
+    box-shadow:
+
+        inset 0 0 25px
+        rgba(100, 230, 255, 0.35);
+}
+
+
+/* =========================================================
+   ORB CORE
+========================================================= */
+
+.orb-core {
+
+    position:
+        absolute;
+
+    width:
+        48px;
+
+    height:
+        48px;
+
+    border-radius:
+        50%;
+
+    left:
+        50%;
+
+    top:
+        50%;
+
+    transform:
+
+        translate(
+            -50%,
+            -50%
+        )
+
+        scale(
+            var(--lumi-core-scale, 1)
+        );
+
+    background:
+
+        radial-gradient(
+            circle,
+            #ffffff,
+            #a9f3ff 25%,
+            #31d5ff 60%,
+            transparent 75%
+        );
+
+    box-shadow:
+
+        0 0
+        calc(
+            20px +
+            (
+                var(--lumi-glow, 0)
+                * 25px
+            )
+        )
+        rgba(
+            120,
+            235,
+            255,
+            0.95
+        ),
+
+        0 0
+        calc(
+            50px +
+            (
+                var(--lumi-glow, 0)
+                * 35px
+            )
+        )
+        rgba(
+            0,
+            190,
+            255,
+            0.8
+        );
+
+    opacity:
+        calc(
+            0.82 +
+            (
+                var(--lumi-glow, 0)
+                * 0.18
+            )
+        );
+
+    z-index:
+        3;
+
+    transition:
+        none;
+
+    will-change:
+        transform,
+        opacity;
+}
+
+
+/* =========================================================
+   ORB LIGHTS
+========================================================= */
+
+.orb-light {
+
+    position:
+        absolute;
+
+    border-radius:
+        50%;
+
+    background:
+        #b7f7ff;
+
+    box-shadow:
+
+        0 0 12px
+        #43ddff,
+
+        0 0 25px
+        rgba(0, 180, 255, 0.8);
+
+    animation:
+        none !important;
+}
+
+
+.light-one {
+
+    width:
+        5px;
+
+    height:
+        5px;
+
+    left:
+        22%;
+
+    top:
+        30%;
+
+    opacity:
+        0.75;
+}
+
+
+.light-two {
+
+    width:
+        4px;
+
+    height:
+        4px;
+
+    right:
+        20%;
+
+    top:
+        55%;
+
+    opacity:
+        0.60;
+}
+
+
+.light-three {
+
+    width:
+        3px;
+
+    height:
+        3px;
+
+    left:
+        45%;
+
+    bottom:
+        20%;
+
+    opacity:
+        0.50;
+}
+
+
+/* =========================================================
+   RINGS
+========================================================= */
+
+.orb-ring {
+
+    position:
+        absolute;
+
+    border-radius:
+        50%;
+
+    border:
+        1px solid
+        rgba(0, 180, 255, 0.18);
+
+    transform:
+        scale(1);
+
+    animation:
+        none !important;
+
+    opacity:
+        0.18;
+
+    transition:
+        none;
+}
+
+
+.ring-one {
+
+    width:
+        205px;
+
+    height:
+        205px;
+
+    border-top-color:
+        rgba(0, 210, 255, 0.30);
+
+    border-bottom-color:
+        rgba(0, 120, 255, 0.10);
+}
+
+
+.ring-two {
+
+    width:
+        270px;
+
+    height:
+        270px;
+
+    border-left-color:
+        rgba(0, 190, 255, 0.25);
+
+    border-right-color:
+        rgba(0, 100, 255, 0.08);
+}
+
+
+.ring-three {
+
+    width:
+        335px;
+
+    height:
+        335px;
+
+    border-top-color:
+        rgba(0, 160, 255, 0.18);
+
+    border-bottom-color:
+        rgba(0, 200, 255, 0.06);
+}
+
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+.orb-particle {
+
+    position:
+        absolute;
+
+    width:
+        4px;
+
+    height:
+        4px;
+
+    border-radius:
+        50%;
+
+    background:
+        #52ddff;
+
+    box-shadow:
+        0 0 10px
+        #52ddff;
+
+    opacity:
+        0.18;
+
+    animation:
+        none !important;
+}
+
+
+.particle-one {
+
+    top:
+        55px;
+
+    left:
+        80px;
+}
+
+
+.particle-two {
+
+    top:
+        105px;
+
+    right:
+        45px;
+}
+
+
+.particle-three {
+
+    bottom:
+        75px;
+
+    left:
+        55px;
+}
+
+
+.particle-four {
+
+    bottom:
+        45px;
+
+    right:
+        90px;
+}
+
+
+.particle-five {
+
+    top:
+        180px;
+
+    left:
+        25px;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.assistant-status {
+
+    margin-top:
+        -10px;
+
+    position:
+        relative;
+
+    z-index:
+        10;
+}
+
+
+.status-title {
+
+    font-size:
+        13px;
+
+    letter-spacing:
+        4px;
+
+    color:
+        #52dfff;
+
+    font-weight:
+        600;
+
+    text-shadow:
+
+        0 0 12px
+        rgba(0, 190, 255, 0.5);
+}
+
+
+.status-description {
+
+    margin-top:
+        8px;
+
+    color:
+        #627e8d;
+
+    font-size:
+        12px;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.controls {
+
+    margin-top:
+        25px;
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    gap:
+        12px;
+}
+
+
+button {
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    cursor:
+        pointer;
+}
+
+
+.talk-button {
+
+    min-width:
+        190px;
+
+    padding:
+        15px 25px;
+
+    border:
+        1px solid
+        rgba(0, 200, 255, 0.65);
+
+    border-radius:
+        8px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(0, 130, 220, 0.25),
+            rgba(0, 60, 120, 0.18)
+        );
+
+    color:
+        #bcefff;
+
+    letter-spacing:
+        2px;
+
+    font-size:
+        11px;
+
+    font-weight:
+        600;
+
+    box-shadow:
+
+        0 0 20px
+        rgba(0, 150, 255, 0.12);
+
+    transition:
+        all 0.25s ease;
+}
+
+
+.talk-button:hover {
+
+    transform:
+        translateY(-2px);
+
+    background:
+        rgba(0, 150, 255, 0.3);
+
+    box-shadow:
+
+        0 0 30px
+        rgba(0, 170, 255, 0.35);
+}
+
+
+.talk-button:disabled {
+
+    opacity:
+        0.45;
+
+    cursor:
+        not-allowed;
+
+    transform:
+        none;
+}
+
+
+.button-icon {
+
+    margin-right:
+        7px;
+}
+
+
+.stop-button {
+
+    padding:
+        15px 20px;
+
+    border:
+        1px solid
+        rgba(255, 90, 110, 0.35);
+
+    border-radius:
+        8px;
+
+    background:
+        rgba(120, 20, 35, 0.15);
+
+    color:
+        #d88994;
+
+    letter-spacing:
+        2px;
+
+    font-size:
+        10px;
+
+    transition:
+        all 0.25s ease;
+}
+
+
+.stop-button:hover:not(:disabled) {
+
+    border-color:
+        rgba(255, 90, 110, 0.8);
+
+    color:
+        #ff9eaa;
+
+    box-shadow:
+
+        0 0 20px
+        rgba(255, 60, 80, 0.2);
+}
+
+
+.stop-button:disabled {
+
+    opacity:
+        0.3;
+
+    cursor:
+        not-allowed;
+}
+
+
+/* =========================================================
+   RESPONSE SETTINGS
+========================================================= */
+
+.settings-panel {
+
+    margin:
+        35px auto 0;
+
+    width:
+        min(650px, 100%);
+
+    padding:
+        18px 22px;
+
+    border:
+        1px solid
+        rgba(0, 150, 220, 0.14);
+
+    border-radius:
+        10px;
+
+    background:
+        rgba(5, 16, 25, 0.65);
+
+    backdrop-filter:
+        blur(10px);
+}
+
+
+.settings-title {
+
+    font-size:
+        9px;
+
+    letter-spacing:
+        3px;
+
+    color:
+        #527889;
+
+    margin-bottom:
+        14px;
+}
+
+
+.response-options {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    gap:
+        30px;
+
+    color:
+        #7995a3;
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        1.5px;
+}
+
+
+.response-option {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        7px;
+
+    cursor:
+        pointer;
+}
+
+
+.response-option input {
+
+    accent-color:
+        #23caff;
+
+    cursor:
+        pointer;
+}
+
+
+/* =========================================================
+   CONVERSATION
+========================================================= */
+
+.conversation-section {
+
+    width:
+        min(850px, 100%);
+
+    margin:
+        28px auto 0;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:
+        15px;
+}
+
+
+.conversation-card {
+
+    min-height:
+        130px;
+
+    padding:
+        20px;
+
+    border:
+        1px solid
+        rgba(0, 150, 220, 0.14);
+
+    border-radius:
+        10px;
+
+    background:
+        rgba(4, 13, 21, 0.7);
+
+    backdrop-filter:
+        blur(12px);
+
+    transition:
+
+        border-color 0.3s ease,
+
+        box-shadow 0.3s ease;
+}
+
+
+.user-card:hover,
+.lumi-card:hover {
+
+    border-color:
+        rgba(0, 180, 255, 0.35);
+
+    box-shadow:
+
+        0 0 25px
+        rgba(0, 120, 255, 0.08);
+}
+
+
+.card-header {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    margin-bottom:
+        15px;
+}
+
+
+.card-label {
+
+    font-size:
+        9px;
+
+    letter-spacing:
+        3px;
+
+    color:
+        #4eb6d5;
+}
+
+
+.card-line {
+
+    height:
+        1px;
+
+    flex:
+        1;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(0, 180, 255, 0.25),
+            transparent
+        );
+}
+
+
+.message-text {
+
+    color:
+        #9bb2be;
+
+    font-size:
+        13px;
+
+    line-height:
+        1.7;
+
+    white-space:
+        pre-wrap;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+
+    text-align:
+        center;
+
+    padding:
+        20px;
+
+    border-top:
+        1px solid
+        rgba(0, 150, 220, 0.1);
+
+    color:
+        #42606e;
+
+    font-size:
+        9px;
+
+    letter-spacing:
+        2px;
+}
+
+
+footer span:first-child {
+
+    color:
+        #55cdec;
+}
+
+
+.footer-dot {
+
+    margin:
+        0 8px;
+
+    color:
+        #23495b;
+}
+
+
+/* =========================================================
+   IMPORTANT:
+   NO OLD ORB ANIMATIONS
+========================================================= */
+
+.orb,
+.orb-core,
+.orb-ring,
+.orb-particle,
+.orb-light {
+
+    animation:
+        none !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .topbar {
+
+        padding:
+            20px;
+    }
+
+
+    .main-container {
+
+        width:
+            94%;
+    }
+
+
+    .intro-section {
+
+        padding-top:
+            30px;
+    }
+
+
+    .intro-section h2 {
+
+        font-size:
+            28px;
+    }
+
+
+    .orb-container {
+
+        width:
+            320px;
+
+        height:
+            320px;
+    }
+
+
+    .orb {
+
+        width:
+            125px;
+
+        height:
+            125px;
+    }
+
+
+    .orb-ring.ring-one {
+
+        width:
+            180px;
+
+        height:
+            180px;
+    }
+
+
+    .orb-ring.ring-two {
+
+        width:
+            230px;
+
+        height:
+            230px;
+    }
+
+
+    .orb-ring.ring-three {
+
+        width:
+            285px;
+
+        height:
+            285px;
+    }
+
+
+    .conversation-section {
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .response-options {
+
+        gap:
+            15px;
+
+        flex-wrap:
+            wrap;
+    }
+
+
+    .controls {
+
+        flex-wrap:
+            wrap;
+    }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .orb,
+    .orb-core,
+    .orb-ring,
+    .orb-particle,
+    .orb-light,
+    .stars-one,
+    .stars-two {
+
+        animation:
+            none !important;
+
+        transition:
+            none !important;
+    }
+}
+/* =========================================================
+   LUMI LIQUID ORB
+   ========================================================= */
+
+.orb {
+    width: 220px !important;
+    height: 220px !important;
+
+    transform:
+        translateY(var(--lumi-y, 0px))
+        scale(var(--lumi-scale, 1));
+
+    transform-origin: center center;
+
+    /*
+       This animation changes the SHAPE of the orb,
+       not its position.
+
+       JavaScript continues to control the size
+       and movement based on the voice.
+    */
+    animation: lumiLiquidFlow 6.5s ease-in-out infinite !important;
+
+    will-change:
+        transform,
+        border-radius,
+        box-shadow;
+
+    border-radius:
+        48% 52% 50% 50% /
+        50% 48% 52% 50%;
+}
+
+
+/* ---------------------------------------------------------
+   LIQUID FLOW
+   --------------------------------------------------------- */
+
+@keyframes lumiLiquidFlow {
+
+    0% {
+        border-radius:
+            48% 52% 50% 50% /
+            50% 48% 52% 50%;
+    }
+
+    20% {
+        border-radius:
+            51% 49% 47% 53% /
+            48% 54% 46% 52%;
+    }
+
+    40% {
+        border-radius:
+            53% 47% 52% 48% /
+            52% 47% 53% 48%;
+    }
+
+    60% {
+        border-radius:
+            47% 53% 54% 46% /
+            50% 53% 47% 50%;
+    }
+
+    80% {
+        border-radius:
+            50% 50% 47% 53% /
+            53% 47% 50% 50%;
+    }
+
+    100% {
+        border-radius:
+            48% 52% 50% 50% /
+            50% 48% 52% 50%;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   LIQUID CORE
+   --------------------------------------------------------- */
+
+.orb-core {
+    transform:
+        scale(var(--lumi-core-scale, 1));
+
+    transform-origin: center center;
+
+    border-radius:
+        48% 52% 50% 50% /
+        50% 48% 52% 50%;
+
+    animation:
+        lumiCoreFlow 4.8s ease-in-out infinite !important;
+
+    will-change:
+        transform,
+        border-radius;
+}
+
+
+@keyframes lumiCoreFlow {
+
+    0% {
+        border-radius:
+            48% 52% 50% 50% /
+            50% 48% 52% 50%;
+    }
+
+    25% {
+        border-radius:
+            53% 47% 48% 52% /
+            47% 53% 50% 50%;
+    }
+
+    50% {
+        border-radius:
+            50% 50% 54% 46% /
+            52% 48% 53% 47%;
+    }
+
+    75% {
+        border-radius:
+            46% 54% 50% 50% /
+            51% 49% 47% 53%;
+    }
+
+    100% {
+        border-radius:
+            48% 52% 50% 50% /
+            50% 48% 52% 50%;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   LISTENING — SLIGHTLY MORE FLOW
+   --------------------------------------------------------- */
+
+.state-listening .orb {
+    animation-duration: 5.2s !important;
+}
+
+.state-listening .orb-core {
+    animation-duration: 3.8s !important;
+}
+
+
+/* ---------------------------------------------------------
+   LUMI SPEAKING — A LITTLE MORE ACTIVE
+   --------------------------------------------------------- */
+
+.state-speaking .orb {
+    animation-duration: 4.6s !important;
+}
+
+.state-speaking .orb-core {
+    animation-duration: 3.4s !important;
+}
+
+
+/* ---------------------------------------------------------
+   THINKING — CALM
+   --------------------------------------------------------- */
+
+.state-thinking .orb {
+    animation-duration: 7.5s !important;
+}
+
+.state-thinking .orb-core {
+    animation-duration: 5.5s !important;
+}
+
+
+/* ---------------------------------------------------------
+   KEEP IT CALM ON REDUCED MOTION
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .orb,
+    .orb-core {
+        animation: none !important;
+    }
+}
